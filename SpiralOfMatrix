@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define R 4
+#define C 5
+int main()
+{
+int i,j;
+    int a[R][C] = { {1,  2,  3,  4,  5},
+        {6, 7,  8,  9,  10},
+        {11, 12, 13, 14, 15},
+        {16, 17, 18, 19, 20}
+    };
+    spiral(R,C,a);
+    return 0;
+}
+void spiral(int endrow, int endcol, int a[R][C])
+{
+     int i, row = 0, col = 0;
+    while (row < endrow && col < endcol)
+    {
+        for (i = col; i < endcol; i++)
+        {
+            printf("%d ", a[row][i]);
+        }
+        row++;
+        for (i = row; i < endrow; i++)
+        {
+            printf("%d ", a[i][endcol-1]);
+        }
+        endcol--;
+        if ( row< endrow)
+        {
+            for (i = endcol-1; i >= col; i--)
+            {
+                printf("%d ", a[endrow-1][i]);
+            }
+            endrow--;
+        }
+        if (col < endcol)
+        {
+            for (i = endrow-1; i >= row; i--)
+            {
+                printf("%d ", a[i][col]);
+            }
+            col++;
+        }
+    }
+}
+/* OUTPUT:
+1 2 3 4 5 10 15 20 19 18 17 16 11 6 7 8 9 14 13 12 
+*/
+
